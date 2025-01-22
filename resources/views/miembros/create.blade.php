@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card card-outline card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">add miemboi</h3>
+                    <h3 class="card-title">actualizar miemboi</h3>
                 </div>
                 <div class="card-body">              
                     <form action="{{url('/miembros')}}" method="post" enctype="multipart/form-data">
@@ -17,7 +17,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">nombre y apellido</label>
-                                            <input type="text" name="nombre_apellido" class="form-control" required> 
+                                            <input type="text" name="nombre_apellido" class="form-control" value="{{old('nombre_apellido')}}" required> 
                                             @error('nombre_apellido')
                                                 <small style="color:red">*campo requerido</small>
                                             @enderror
@@ -27,7 +27,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">email</label>
-                                            <input type="email" name="email" class="form-control">
+                                            <input type="email" name="email" value="{{old('email')}}" class="form-control">
                                             @error('email')
                                             <small style="color:red">*campo requerido</small>
                                         @enderror

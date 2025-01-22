@@ -18,7 +18,8 @@ Route::get('/', function () {     return view('index'); }) ->middleware('auth');
 
 
 //desabilitar ruta register con 404
-Auth::routes(['register'=>false]);
+//Auth::routes(['register'=>false]);
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

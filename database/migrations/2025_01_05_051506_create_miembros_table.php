@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('email',255)->unique();
             $table->string('estado',5);
             $table->string('departamento',255);
-            $table->text('foto');
+            $table->text('foto')->nullable();
             $table->string('fecha_ingreso',55);
             $table->timestamps();
         });
