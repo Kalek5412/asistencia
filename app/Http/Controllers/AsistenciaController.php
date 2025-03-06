@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Asistencia;
 use App\Models\Miembro;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\App;
+
+
+
 
 class AsistenciaController extends Controller
 {
@@ -16,6 +21,35 @@ class AsistenciaController extends Controller
         $asistencias=Asistencia::paginate();
         return view('asistencias.index',compact('asistencias'))
         ->with('i',(request()->input('page',1)-1)*$asistencias->perPage());
+    }
+
+    public function reportes()
+    {
+
+        return view('asistencias.reportes');
+    }
+
+    public function pdf()
+    {
+
+     /*    $asistencias=Asistencia::paginate();
+        $pdf = Pdf::loadView('asistencias.pdf', $pdf);
+        return $pdf->stream(); */
+        $asistencias=Asistencia::paginate();
+        $pdf = Pdf::loadView('asistencias.pdf',['asistencias'=>$asistencias]);
+        //$pdf->loadHTML('<h1>Test</h1>');
+        return $pdf->stream();
+    }
+
+    public function pdf_fechas(Request $request)
+    {
+        $fi=$request->fi;
+        $ff=$request->ff;
+        $asistencias=Asistencia::where('fecha','>=',$fi)
+        ->where('fecha','<=',$ff)
+        ->get();
+        $pdf = Pdf::loadView('asistencias.pdf_fechas',['asistencias'=>$asistencias]);       
+        return $pdf->stream();
     }
 
     /**

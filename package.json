@@ -1,7 +1,7 @@
 {
     "private": true,
     "scripts": {
-        "dev": "vite",
+        "dev": "vite --host",
         "build": "vite build"
     },
     "devDependencies": {
@@ -15,4 +15,5 @@
     "dependencies": {
         "sweetalert2": "^11.15.10"
     }
+
 }

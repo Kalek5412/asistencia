@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AsistenciaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,18 +15,19 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/',[App\Http\Controllers\AdminController::class, 'index']);
+Route::get('/',[App\Http\Controllers\AdminController::class, 'index'])->name('index')->middleware('auth');
+Route::get('/asistencias/reportes', [AsistenciaController::class, 'reportes'])->name('reportes')->middleware('auth');
+Route::get('/asistencias/pdf', [AsistenciaController::class, 'pdf'])->name('pdf')->middleware('auth');
+Route::get('/asistencias/pdf_fechas', [AsistenciaController::class, 'pdf_fechas'])->name('pdf_fechas')->middleware('auth');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+
 
 
 //desabilitar ruta register con 404
 //Auth::routes(['register'=>false]);
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//Route::get('/miembros', [App\Http\Controllers\MiembroController::class, 'index']);
-//Route::get('/miembros/create', [App\Http\Controllers\MiembroController::class, 'create']);
-Route::resource('/miembros',\App\Http\Controllers\MiembroController::class);
-Route::resource('/departamentos',\App\Http\Controllers\DepartamentoController::class);
-Route::resource('/usuarios',\App\Http\Controllers\UserController::class);
-Route::resource('/asistencias',\App\Http\Controllers\AsistenciaController::class);
+Route::resource('/miembros',\App\Http\Controllers\MiembroController::class)->middleware('can:miembros');
+Route::resource('/departamentos',\App\Http\Controllers\DepartamentoController::class)->middleware('can:departamentos');
+Route::resource('/usuarios',\App\Http\Controllers\UserController::class)->middleware('can:usuarios');
+Route::resource('/asistencias',\App\Http\Controllers\AsistenciaController::class)->middleware('auth');
