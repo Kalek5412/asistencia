@@ -17,8 +17,8 @@
                     <div class="card-header">
                         <h3 class="card-title">miebros registrados</h3>
                         <div class="card-tools">
-                            <a href="{{ url('miembros/create') }}" class="btn btn-primary">
-                                <i class="bi bi-file-plus"></i> Agregar nuevo miembro
+                            <a href="{{ url('asistencias/create') }}" class="btn btn-primary">
+                                <i class="bi bi-file-plus"></i> Agregar nuevo asistencia
                             </a>
                         </div>
                     </div>
@@ -28,39 +28,31 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">nombre y apellido</th>
-                                    <th scope="col">telefono</th>
-                                    <th scope="col">email</th>
-                                    <th scope="col">estado</th>
-                                    <th scope="col">agregado</th>
+                                    <th scope="col">fecha</th>
+                                    <th scope="col">miembro id</th>
+                               
                                     <th scope="col">accion</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $i = 0; ?>
-                                @foreach ($miembros as $miembro)
+                                @foreach ($asistencias as $asistencia)
                                     <tr>
 
                                         <td><?php echo $i = $i + 1; ?></td>
-                                        <td>{{ $miembro->nombre_apellido }}</td>
-                                        <td>{{ $miembro->telefono }}</td>
-                                        <td>{{ $miembro->email }}</td>
-                                        <td style="text-align:center">
-                                            <button class="btn btn-success btn-sm" style="border-radius: 20px">
-                                                activo
-                                            </button>
-                                        </td>
-                                        <td>{{ $miembro->fecha_ingreso }}</td>
+                                        <td>{{ $asistencia->fecha }}</td>
+                                        <td>{{ $asistencia->miembro->nombre_apellido }}</td>
+                                       
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                               
-                                                <form action="{{url('miembros',$miembro->id)}}" method="post">
+                                                <form action="{{url('asistencias',$asistencia->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger mr-2"><i class="bi bi-trash"></i></button>
+                                                    <button type="submit" onclick="return confirm('seguro de eliminar este registro?')" class="btn btn-danger mr-2"><i class="bi bi-trash"></i></button>
                                                 </form>
-                                                <a href="{{route('miembros.edit',$miembro->id)}}" type="button" class="btn btn-warning mr-2"><i class="bi bi-pencil"></i></a>
-                                                <a href="{{url('miembros',$miembro->id)}}"  type="button" class="btn btn-success"><i class="bi bi-eye"></i></a>
+                                                <a href="{{route('asistencias.edit',$asistencia->id)}}" type="button" class="btn btn-warning mr-2"><i class="bi bi-pencil"></i></a>
+                                                <a href="{{url('asistencias',$asistencia->id)}}"  type="button" class="btn btn-success"><i class="bi bi-eye"></i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -73,12 +65,12 @@
                                     "pageLength": 10,
                                     "language": {
                                         "emptyTable": "No hay información",
-                                        "info": "Mostrando START a END de TOTAL Miembros",
-                                        "infoEmpty": "Mostrando 0 a 0 de 0 Miembros",
-                                        "infoFiltered": "(Filtrado de MAX total Miembros)",
+                                        "info": "Mostrando START a END de TOTAL asistencias",
+                                        "infoEmpty": "Mostrando 0 a 0 de 0 asistencias",
+                                        "infoFiltered": "(Filtrado de MAX total asistencias)",
                                         "infoPostFix": "",
                                         "thousands": ",",
-                                        "lengthMenu": "Mostrar MENU Miembros",
+                                        "lengthMenu": "Mostrar MENU asistencias",
                                         "loadingRecords": "Cargando...",
                                         "processing": "Procesando...",
                                         "search": "Buscador:",

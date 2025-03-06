@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {     return view('index'); }) ->middleware('auth');
+Route::get('/',[App\Http\Controllers\AdminController::class, 'index']);
 
 
 //desabilitar ruta register con 404
@@ -23,6 +23,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/miembros', [App\Http\Controllers\MiembroController::class, 'index']);
+//Route::get('/miembros', [App\Http\Controllers\MiembroController::class, 'index']);
 //Route::get('/miembros/create', [App\Http\Controllers\MiembroController::class, 'create']);
 Route::resource('/miembros',\App\Http\Controllers\MiembroController::class);
+Route::resource('/departamentos',\App\Http\Controllers\DepartamentoController::class);
+Route::resource('/usuarios',\App\Http\Controllers\UserController::class);
+Route::resource('/asistencias',\App\Http\Controllers\AsistenciaController::class);

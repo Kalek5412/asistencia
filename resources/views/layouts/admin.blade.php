@@ -15,15 +15,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-    <script src="{{ asset('plugins/jquery/jquery.js') }}"></script>
+    <link rel="stylesheet" href="{{ url('plugins/fontawesome-free/css/all.min.css') }}">
+    <script src="{{ url('plugins/jquery/jquery.js') }}"></script>
     <!--dd-->
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ url('dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ url('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ url('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--4.20.1-->
+    <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
+    
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -203,8 +206,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="nav-item">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas">
-                                    <i class="bi bi-file-person-fill"></i>
+                                    <i class="bi bi-building"></i>
+                                </i>
+                                <p>
+                                    departamentos
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ url('departamentos/create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Nuevo Departamento</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ url('departamentos') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Listado de departamentos</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas">
+                                    <i class="bi bi-file-person-fill"></i>
                                 </i>
                                 <p>
                                     Miembros
@@ -224,9 +252,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <p>Listado de Miembros</p>
                                     </a>
                                 </li>
-
                             </ul>
                         </li>
+                 
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas">
+                                    <i class="bi bi-calendar2-week"></i>
+                                </i>
+                                <p>
+                                    asistencias
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ url('asistencias/create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Nuevo asistencias</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ url('asistencias') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Listado de asistencia</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                 
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
@@ -237,7 +292,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </i>
                                 <p>Cerrar Sesion</p>
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
@@ -285,21 +339,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- REQUIRED SCRIPTS -->
 
     <!-- Bootstrap 4 -->
-    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
-    <script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+    <script src="{{ url('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ url('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ url('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ url('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ url('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ url('plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ url('plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ url('plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ url('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ url('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ url('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <!-- AdminLTE App -->
-    <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+    <script src="{{ url('dist/js/adminlte.min.js') }}"></script>
 </body>
 
 </html>

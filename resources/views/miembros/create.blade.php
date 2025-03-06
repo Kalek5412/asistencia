@@ -55,8 +55,9 @@
                                         <div class="form-group">
                                             <label for="">genero</label>
                                             <select name="genero" id="" class="form-control">
-                                                <option value="MASCULINO">MASCULINO</option>
-                                                <option value="FEMENINO">FEMENINO</option>
+                                                <option value="MASCULINO" {{old('genero')=='MASCULINO' ? 'selected':''}} >MASCULINO</option>                                               
+                                                <option value="FEMENINO" {{old('genero')=='FEMENINO' ? 'selected':''}} >FEMENINO</option>
+                                     
                                             </select>
                                             @error('genero')
                                             <small style="color:red">*campo requerido</small>

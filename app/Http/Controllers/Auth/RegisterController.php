@@ -67,6 +67,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'fecha_ingreso'=>'2023-11-20',
+            'estado'=>'1'
         ]);
     }
 }
